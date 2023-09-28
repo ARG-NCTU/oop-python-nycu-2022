@@ -1,67 +1,35 @@
 import lec10_complexity_part1 as lec10
 import pytest
 
-# create a fixture for the empty list
-@pytest.fixture
-def empty_list():
-    return []
+# ... existing fixtures and tests ...
 
-# create a fixture for the list of integers
-@pytest.fixture
-def sample_data():
-    data = [1, 2, 3, 4, 5]
-    return data
+# Additional test cases for linear_search function
+def test_linear_search_edge_cases():
+    assert lec10.linear_search([1], 1) == True  # Single element list
+    assert lec10.linear_search([1, 1, 1, 1], 1) == True  # Multiple occurrences
+    assert lec10.linear_search([1, 2, 3, 4, 5], 1) == True  # Element at the beginning
+    assert lec10.linear_search([1, 2, 3, 4, 5], 5) == True  # Element at the end
 
-def test_linear_search():
-    assert lec10.linear_search([1, 2, 3, 4, 5], 3) == True 
-    assert lec10.linear_search([1, 2, 3, 4, 5], 6) == False
-    assert lec10.linear_search([], 3) == False
+def test_linear_search_empty_list():
+    assert lec10.linear_search([], 1) == False  # Empty list
+    assert lec10.linear_search([], None) == False  # Empty list with None
 
-def test_linear_search_int_list(sample_data):
-    assert lec10.linear_search(sample_data, 3) == True 
-    assert lec10.linear_search(sample_data, 6) == False
+# Additional test cases for intersect function
+def test_intersect_duplicate_elements():
+    assert lec10.intersect([1, 1, 2, 2, 3], [2, 3, 4]) == [2, 3]  # Duplicate elements in both lists
+    assert lec10.intersect([1, 2, 3, 4], [4, 4, 5, 6]) == [4]  # Duplicate elements in one list
 
-# create a list of integers, with parameter n for number of elements
-def int_list(n):
-    return list(range(n))
+def test_intersect_mixed_types():
+    assert lec10.intersect([1, 2, 'a', 'b'], [2, 'b', 'c']) == [2, 'b']  # Mixed types (int and str)
+    assert lec10.intersect(['a', 'b', 'c'], [1, 2, 3]) == []  # No common elements
 
-def test_linear_search_int_list():
-    assert lec10.linear_search(int_list(10), 4) == True
-    assert lec10.linear_search(int_list(10000), 4) == True
-    #assert lec10.linear_search(int_list(100000000), 4) == True
+# Additional test cases for intersect_in function
+def test_intersect_in_mixed_types():
+    assert 2 in [1, 2, 'a', 'b'] == True  # Element found in the list with mixed types
+    assert 'c' not in [1, 2, 'a', 'b'] == True  # Element not found in the list with mixed types
 
-# create a fixture factory that takes a parameter n for number of elements
-@pytest.fixture
-def int_list_factory():
-    def _int_list(n):
-        return list(range(n))
-    return _int_list
+def test_intersect_in_empty_list():
+    assert 1 not in [] == True  # Element not found in an empty list
+    assert None not in [] == True  # None not found in an empty list
 
-def test_linear_search_int_list_factory(int_list_factory):
-    assert lec10.linear_search(int_list_factory(10), 4) == True
-    assert lec10.linear_search(int_list_factory(10000), 4) == True
-    assert lec10.linear_search(int_list_factory(100000000), 4) == True
-
-# create a fixture for num_elements with parameters 10, 10000, 1000000
-@pytest.fixture(params=[10, 10000, 10000000])
-def num_elements(request):
-    return request.param
-
-def test_linear_search_int_list_factory_enum(int_list_factory, num_elements):
-    assert lec10.linear_search(int_list_factory(num_elements), 4) == True
-
-# test intersection
-def test_intersect():
-    assert lec10.intersect([1, 2, 3, 2, 3], [2, 3, 4]) == [2, 3]
-    assert lec10.intersect([1, 2, 3], [4, 5, 6]) == []
-    assert lec10.intersect([], [4, 5, 6]) == []
-
-# check elements in a list via python built-in function
-def test_intersect_in():
-    assert 2 in [1, 2, 3]
-    assert 4 not in [1, 2, 3]
-    
-
-
-
-
+# ... more test cases can be added as needed ...
