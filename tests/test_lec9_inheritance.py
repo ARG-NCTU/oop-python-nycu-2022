@@ -11,7 +11,20 @@ def test_animal_5A():
     print(a)
     assert a.get_name() == "fluffy"
     assert a.get_age() == 4
+
+def test_03_cat():
+    class Cat(Animal):
+        def speak(self):
+            print("meow")
+        def __str__(self):
+            return "cat:"+str(self.name)+":"+str(self.age)
     
+    print("\n---- cat tests ----")
+    c = Cat(5)
+    c.set_name("Black")
+    assert c.get_age() == 5
+    assert c.get_name() == "Black"
+
 def test_group7_animal():
     a = inh.Animal(69)
     print(a)
