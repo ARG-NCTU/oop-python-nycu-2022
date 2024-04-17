@@ -313,3 +313,13 @@ def test_17_coordinate():
     assert c.distance(origin) == 13
     assert origin.distance(c) == 13
 
+def test_12_intset():
+    s = lc.intSet()
+    s.insert(3)
+    s.insert(4)
+    assert s.member(3)
+    assert s.member(4)
+    assert not s.member(5)
+    s.remove(3)
+    assert not s.member(3)
+    assert s.member(4)
