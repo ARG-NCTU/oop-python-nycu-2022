@@ -1,4 +1,12 @@
+import unittest
 import matplotlib.pyplot as plt
+import numpy as np
+import unittest
+import numpy as np
+import matplotlib.pyplot as plt
+
+if __name__ == '__main__':
+    unittest.main()
 
 x_vals = [1, 2, 3, 4]
 y_vals_1 = [1, 2, 3, 4]
