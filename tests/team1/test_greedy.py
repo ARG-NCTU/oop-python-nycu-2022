@@ -55,7 +55,6 @@ def test_greedys():
     assert expected_str == \
         "wine: <89, 123>; beer: <90, 154>; cola: <79, 150>; apple: <50, 95>; donut: <10, 195>; "
 
-
 def test_1_greedys():
 
     name = ['wine', 'beer', 'pizza', 'burger', 'fries', 'cola', 'apple', 'donut', 'hotdog']
@@ -83,4 +82,3 @@ def test_1_greedys():
     expected_str = Menu.get_foods_str(taken)
     assert val == 328
     assert expected_str == "wine: <89, 123>; beer: <90, 154>; cola: <79, 150>; apple: <50, 95>; hotdog: <20, 200>; "
-

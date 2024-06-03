@@ -313,6 +313,8 @@ def test_17_coordinate():
     assert c.y == 12
     assert c.distance(origin) == 13
     assert origin.distance(c) == 13
+    assert str(c) == "<5,12>"
+    
 def test_16_coordinate():
     a=lc.Coordinate(5,12)
     o=lc.Coordinate(0,0)
