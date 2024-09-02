@@ -1,11 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Sep 19 11:45:20 2016
-
-@author: johnguttag
-
-Modified: egrimson
-"""
 
 import random, pylab, numpy
 
@@ -39,7 +31,7 @@ def getData(fileName):
         masses.append(float(m))
     dataFile.close()
     return (masses, distances)
-    
+
 def labelPlot():
     pylab.title('Measured Displacement of Spring')
     pylab.xlabel('|Force| (Newtons)')
@@ -53,7 +45,7 @@ def plotData(fileName):
     pylab.plot(xVals, yVals, 'bo',
                label = 'Measured displacements')
     labelPlot()
-    
+
 def fitData(fileName):
     xVals, yVals = getData(fileName)
     xVals = pylab.array(xVals)
@@ -69,10 +61,7 @@ def fitData(fileName):
                label = 'Linear fit, k = '
                + str(round(1/a, 5)))
     pylab.legend(loc = 'best')
-    
-#fitData('springData.txt')
 
-   
 def fitData1(fileName):
     xVals, yVals = getData(fileName)
     xVals = pylab.array(xVals)
@@ -169,4 +158,4 @@ def genNoisyParabolicData(a, b, c, xVals, fName):
     for i in range(len(yVals)):
         f.write(str(yVals[i]) + ' ' + str(xVals[i]) + '\n')
     f.close()
-    
+
