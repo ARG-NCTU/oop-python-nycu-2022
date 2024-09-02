@@ -1,7 +1,8 @@
 import random
 import pytest
 import math
-from lec4_module import roll_die, run_sim, same_date, birthday_prob
+import add_path
+from mit_ocw_data_science.lec4.lec4_module import roll_die, run_sim, same_date, birthday_prob
 
 
 def test11_roll_die():
