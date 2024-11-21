@@ -1,0 +1,7 @@
+# Exclude txt in current dir#
+#############################
+/*.txt
+
+# Exclude csv in current dir#
+#############################
+/*.csv
