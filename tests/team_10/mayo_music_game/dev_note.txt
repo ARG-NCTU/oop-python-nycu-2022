@@ -1,0 +1,26 @@
+565 pixels
+1.6 sec
+565 / 1.6 = 353.125
+=> 353.125 pixels per second
+
+p = time_pass - (arrive - 1.6)
+353.125*p = 應該跑的距離
+cord_y = 實際跑的距離
+
+return 353.125*p - cord_y
+
+
+# 判定
+if keyboard pressed
+    if this keyboard
+        check time +- 0.1sec <> time_pass
+            del(showing_array[i])
+
+
+465 in the middle
++- 25 pixel
+
+event.key -> one key per time
+=> no double key 
+
+key.pressed + prev_key
