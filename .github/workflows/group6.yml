@@ -1,0 +1,85 @@
+name: group6
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - run: echo "🍏 This job's status is ${{ job.status }}."
+
+  # Define the job to use a Docker container
+  # The job is named Pull-Docker-Image
+  # The job runs on argnctu/oop:latest Docker container
+  # The job executes the following steps:
+  # Pull the Docker image
+  container-test-job:
+    runs-on: ubuntu-latest
+    container:
+      image: node:18
+      env:
+        NODE_ENV: development
+      ports:
+        - 80
+      volumes:
+        - my_docker_volume:/volume_mount
+      options: --cpus 1
+    steps:
+      - name: Check for dockerenv file
+        run: (ls /.dockerenv && echo Found dockerenv) || (echo No dockerenv)
+
+  Run-Pytest-Tests:
+    runs-on: ubuntu-latest
+    container:
+      image: argnctu/oop:latest
+      env:
+        NODE_ENV: development
+      ports:
+        - 80
+      volumes:
+        - my_docker_volume:/volume_mount
+      options: --cpus 1 --user root
+
+    steps:
+      - name: Check for dockerenv file
+        run: (ls /.dockerenv && echo Found dockerenv) || (echo No dockerenv)
+
+      - name: Set permissions on temp directory
+        run: chmod -R 777 /__w/_temp/
+
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Run G3 tests
+        run: |
+          pip install -r requirements.txt
+          pytest
+        working-directory: tests/group3  
+
+      - name: Run G4 tests
+        run: |
+          pytest
+        working-directory: tests/group4
+
+      - name: Run G8 tests
+        run: |
+          pytest
+        working-directory: tests/group8
+        
+      - name: Run tests
+        run: |
+          pytest
+        working-directory: tests/groupTA  
+          #       - name: Upload test results
+          #         uses: actions/upload-artifact@v5
+          #         with:
+          #           name: test-results

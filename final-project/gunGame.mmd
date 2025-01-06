@@ -1,0 +1,28 @@
+graph TD
+    A[Main Entry - if name equals main] --> B[Initialize Game class]
+    B --> C[Execute game.run]
+    C --> D[Game.run]
+    D --> D1[Show start screen - draw_init]
+    D --> D2[Main game loop]
+    D --> D3[Check fireball mode]
+    D --> D4[Check player victory state]
+    D --> D5[Update items, fireballs, bullets, etc.]
+    D --> D6[Handle player collisions and actions]
+    D --> D7[Update and render screen]
+    
+    D2 -->|Quit pressed| E[Exit game - pygame.quit]
+    D3 --> F[Spawn fireball - Game.spawn_fireball]
+    D4 --> G[Player victory screen - draw_end]
+    D5 --> H[Check item collisions]
+    H --> H1[Trigger speed boost effect]
+    H --> H2[Trigger shield effect]
+    D6 --> I[Check bullet collisions]
+    I --> I1[Calculate damage]
+    I --> I2[Remove out-of-bounds bullets]
+    D7 --> J[Refresh screen - pygame.display.flip]
+    
+    G --> E
+    F --> D2
+    H --> D2
+    I --> D2
+    J --> D2
